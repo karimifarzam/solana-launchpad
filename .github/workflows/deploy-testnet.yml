@@ -1,0 +1,61 @@
+name: Deploy to Solana Devnet
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        target: sbf
+        override: true
+    
+    - name: Setup Solana
+      uses: solana-labs/setup-solana@v1
+      with:
+        solana-version: v1.18
+    
+    - name: Setup Anchor
+      run: |
+        cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
+        avm install 0.31.1
+        avm use 0.31.1
+    
+    - name: Build program
+      run: |
+        anchor build
+        ls -la target/deploy/
+    
+    - name: Deploy to devnet
+      run: |
+        anchor deploy --provider.cluster devnet --provider.wallet ~/.config/solana/id.json
+        echo "Program deployed successfully!"
+    
+    - name: Get program ID
+      id: program-id
+      run: |
+        PROGRAM_ID=$(solana address -k target/deploy/launchpad-keypair.json)
+        echo "program-id=$PROGRAM_ID" >> $GITHUB_OUTPUT
+        echo "Program ID: $PROGRAM_ID"
+    
+    - name: Update Anchor.toml
+      run: |
+        sed -i "s/launchpad = \".*\"/launchpad = \"${{ steps.program-id.outputs.program-id }}\"/" Anchor.toml
+        cat Anchor.toml
+    
+    - name: Commit updated Anchor.toml
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add Anchor.toml
+        git commit -m "Update program ID after deployment" || echo "No changes to commit"
+        git push || echo "Push failed (might be protected branch)"

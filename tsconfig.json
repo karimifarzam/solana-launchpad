@@ -1,0 +1,57 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "es2015"
+    ],
+    "module": "commonjs",
+    "target": "es6",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "declaration": true,
+    "outDir": "dist",
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "noEmit": false,
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./app/src/*"
+      ],
+      "@/components/*": [
+        "./app/src/components/*"
+      ],
+      "@/lib/*": [
+        "./app/src/lib/*"
+      ],
+      "@/types/*": [
+        "./app/src/types/*"
+      ]
+    },
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "include": [
+    "tests/**/*",
+    "app/**/*",
+    "sdk/**/*",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "target",
+    "programs",
+    "dist"
+  ]
+}
