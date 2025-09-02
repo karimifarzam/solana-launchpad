@@ -44,10 +44,8 @@ export const NETWORKS: Record<WalletAdapterNetwork, NetworkConfig> = {
 };
 
 export const getCurrentNetwork = (): WalletAdapterNetwork => {
-  if (typeof window === 'undefined') return WalletAdapterNetwork.Devnet;
-  
-  const network = process.env.NEXT_PUBLIC_SOLANA_NETWORK as WalletAdapterNetwork;
-  return network || WalletAdapterNetwork.Devnet;
+  // Always return Devnet for consistency between server and client
+  return WalletAdapterNetwork.Devnet;
 };
 
 export const getCurrentNetworkConfig = (): NetworkConfig => {
