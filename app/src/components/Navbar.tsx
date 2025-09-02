@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
+import { getCurrentNetworkConfig } from '../config/networks';
 import { 
   Bars3Icon, 
   XMarkIcon, 
@@ -75,7 +76,7 @@ export function Navbar() {
             <div className="hidden sm:flex items-center space-x-2 text-xs">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
               <span className="text-gray-600">
-                {process.env.NEXT_PUBLIC_SOLANA_NETWORK || 'devnet'}
+                {getCurrentNetworkConfig().name.toLowerCase()}
               </span>
             </div>
 
