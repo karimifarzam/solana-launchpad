@@ -58,10 +58,12 @@ export class LaunchpadSDK {
   public readonly programId: PublicKey;
   public readonly program: Program | null = null;
   public readonly config: LaunchpadSDKConfig;
+  public readonly meteoraProgramId: PublicKey;
 
   constructor(connection: Connection, config: LaunchpadSDKConfig) {
     this.connection = connection;
     this.programId = config.programId;
+    this.meteoraProgramId = new PublicKey('LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo'); // Devnet Meteora program ID
     this.config = {
       commitment: 'confirmed',
       skipPreflight: false,
@@ -480,6 +482,27 @@ export class LaunchpadSDK {
   // ============================================================================
   // Meteora Integration
   // ============================================================================
+
+  getMeteoraConfig() {
+    return {
+      programId: this.meteoraProgramId,
+      apiUrl: 'https://api.meteora.ag',
+      network: 'devnet',
+      defaultPoolConfig: {
+        binStep: 25,
+        baseFactor: 1000,
+        filterPeriod: 300,
+        decayPeriod: 600,
+        reductionFactor: 500,
+        variableFeeControl: 300,
+        protocolShare: 100,
+        maxBinStep: 100,
+        minBinStep: 1,
+        maxSwapAmount: 1000000000,
+        minSwapAmount: 1000000,
+      },
+    };
+  }
 
   async graduateLaunchpad(
     authority: Keypair,

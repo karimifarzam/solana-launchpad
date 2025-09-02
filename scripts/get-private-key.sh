@@ -34,3 +34,4 @@ echo "💡 Alternative: Use the keypair file directly"
 echo "   Some wallets allow importing the entire keypair file"
 echo "   Try copying the contents of: $KEYPAIR_FILE"
 
+

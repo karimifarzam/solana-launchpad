@@ -80,3 +80,4 @@ echo ""
 echo "🚀 Run this to set up for testing:"
 echo "   ./scripts/deploy-testnet-simple.sh"
 
+

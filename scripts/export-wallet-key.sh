@@ -108,3 +108,4 @@ echo "   - You should see your 12 SOL balance"
 echo "   - The wallet should show 'Devnet' network"
 echo "   - You can now test your launchpad frontend"
 
+

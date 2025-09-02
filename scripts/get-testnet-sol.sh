@@ -32,3 +32,4 @@ read -r
 # Open the web faucet
 open "https://faucet.solana.com"
 
+

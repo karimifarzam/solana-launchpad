@@ -8,6 +8,7 @@ export interface NetworkConfig {
   explorer: string;
   faucet?: string;
   isTestnet: boolean;
+  meteoraProgramId: string;
 }
 
 export const NETWORKS: Record<WalletAdapterNetwork, NetworkConfig> = {
@@ -17,6 +18,7 @@ export const NETWORKS: Record<WalletAdapterNetwork, NetworkConfig> = {
     wsEndpoint: clusterApiUrl(WalletAdapterNetwork.Mainnet).replace('https://', 'wss://'),
     explorer: 'https://explorer.solana.com',
     isTestnet: false,
+    meteoraProgramId: 'LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo',
   },
   [WalletAdapterNetwork.Testnet]: {
     name: 'Testnet',
@@ -25,6 +27,7 @@ export const NETWORKS: Record<WalletAdapterNetwork, NetworkConfig> = {
     explorer: 'https://explorer.solana.com/?cluster=testnet',
     faucet: 'https://faucet.solana.com',
     isTestnet: true,
+    meteoraProgramId: 'LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo',
   },
   [WalletAdapterNetwork.Devnet]: {
     name: 'Devnet',
@@ -33,6 +36,7 @@ export const NETWORKS: Record<WalletAdapterNetwork, NetworkConfig> = {
     explorer: 'https://explorer.solana.com/?cluster=devnet',
     faucet: 'https://faucet.solana.com',
     isTestnet: true,
+    meteoraProgramId: 'LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo',
   },
   [WalletAdapterNetwork.Localnet]: {
     name: 'Localnet',
@@ -40,6 +44,7 @@ export const NETWORKS: Record<WalletAdapterNetwork, NetworkConfig> = {
     wsEndpoint: 'ws://127.0.0.1:8899',
     explorer: 'https://explorer.solana.com/?cluster=custom&customUrl=http://127.0.0.1:8899',
     isTestnet: false,
+    meteoraProgramId: 'LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo',
   },
 };
 
@@ -51,5 +56,14 @@ export const getCurrentNetwork = (): WalletAdapterNetwork => {
 export const getCurrentNetworkConfig = (): NetworkConfig => {
   const network = getCurrentNetwork();
   return NETWORKS[network];
+};
+
+export const getMeteoraConfig = () => {
+  const networkConfig = getCurrentNetworkConfig();
+  return {
+    programId: networkConfig.meteoraProgramId,
+    apiUrl: process.env.NEXT_PUBLIC_METEORA_API_URL || 'https://api.meteora.ag',
+    network: networkConfig.name.toLowerCase(),
+  };
 };
 
