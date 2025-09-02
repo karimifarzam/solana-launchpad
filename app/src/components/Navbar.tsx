@@ -14,7 +14,6 @@ import {
   Cog6ToothIcon
 } from '@heroicons/react/24/outline';
 import { motion, AnimatePresence } from 'framer-motion';
-import { NetworkIndicator } from './NetworkIndicator';
 
 // Dynamic import for WalletMultiButton to avoid hydration issues
 const WalletMultiButton = dynamic(
@@ -72,8 +71,16 @@ export function Navbar() {
 
           {/* Right side */}
           <div className="flex items-center space-x-4">
-            {/* Network indicator and wallet */}
-            {mounted && <NetworkIndicator />}
+            {/* Network indicator */}
+            <div className="hidden sm:flex items-center space-x-2 text-xs">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span className="text-gray-600">
+                {process.env.NEXT_PUBLIC_SOLANA_NETWORK || 'devnet'}
+              </span>
+            </div>
+
+            {/* Wallet button */}
+            {mounted && <WalletMultiButton className="!bg-primary-600 !hover:bg-primary-700 !rounded-lg !text-sm !font-medium !h-10" />}
 
             {/* Mobile menu button */}
             <div className="sm:hidden">

@@ -58,3 +58,4 @@ echo "1. Copy env.testnet to .env.local: cp env.testnet .env.local"
 echo "2. Start the frontend: npm run dev"
 echo "3. Make sure you have testnet SOL in your wallet"
 echo "4. Test the application on testnet"
+

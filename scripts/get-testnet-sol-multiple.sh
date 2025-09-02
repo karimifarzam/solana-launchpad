@@ -77,3 +77,4 @@ echo "- Check the Solana Explorer to see if transactions appear"
 echo ""
 echo "🔍 To monitor for incoming SOL:"
 echo "   watch -n 5 'solana balance'"
+

@@ -110,3 +110,4 @@ echo "📋 Next steps:"
 echo "1. Copy env.testnet to .env.local: cp env.testnet .env.local"
 echo "2. Start the frontend: npm run dev"
 echo "3. Test the application on testnet"
+

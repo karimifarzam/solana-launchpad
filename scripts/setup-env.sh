@@ -37,3 +37,4 @@ echo "🚀 Next steps:"
 echo "1. Get testnet SOL: ./scripts/get-testnet-sol.sh"
 echo "2. Deploy to testnet: ./scripts/deploy-testnet.sh"
 echo "3. Start frontend: npm run dev"
+

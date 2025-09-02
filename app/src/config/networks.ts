@@ -54,3 +54,4 @@ export const getCurrentNetworkConfig = (): NetworkConfig => {
   const network = getCurrentNetwork();
   return NETWORKS[network];
 };
+

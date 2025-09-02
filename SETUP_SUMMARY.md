@@ -138,3 +138,4 @@ NEXT_PUBLIC_IS_TESTNET=true
 Your launchpad is configured and ready for testnet deployment. Choose your preferred build method and start testing!
 
 For questions or issues, check the troubleshooting section or refer to the detailed `TESTNET_SETUP.md` guide.
+

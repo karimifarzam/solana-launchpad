@@ -79,3 +79,4 @@ echo "   This allows you to test the frontend while we solve the build issue"
 echo ""
 echo "🚀 Run this to set up for testing:"
 echo "   ./scripts/deploy-testnet-simple.sh"
+

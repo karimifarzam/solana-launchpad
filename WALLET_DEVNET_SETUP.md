@@ -90,3 +90,4 @@ If you're still having trouble:
 Your launchpad is fully configured for devnet. Once you switch your wallet, you'll be able to test everything!
 
 **Next step:** Switch your wallet to devnet and test the frontend at http://localhost:3000
+
